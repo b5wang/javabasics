@@ -1,5 +1,7 @@
 package com.b5wang.javabasics.leetcode.entrylevel;
 
+import com.sun.istack.internal.NotNull;
+
 /**
  * https://leetcode.cn/problems/contains-duplicate/?envType=study-plan&id=shu-ju-jie-gou-ru-men&plan=data-structures&plan_progress=yvcyv1t
  *
@@ -24,6 +26,44 @@ public class Ex217_FindDuplicatedElements {
      * 要想再提高速度，目前我能想到的就是先排序，在比较相邻的两个数字打小
      * 需要用一个快的排序算法。
      * */
+
+
+    /** Fastest.
+     *  Similar to HashMap, searching very fast
+     * */
+    public boolean containsDuplicate(int[] nums) {
+
+        if(nums.length == 1){
+            return false;
+        }
+
+
+        IntNode[] bucket = new IntNode[nums.length];
+
+        int len = nums.length;
+        for(int i=0; i<len; i++){
+            int index = nums[i] % len;
+            IntNode node = bucket[index];
+            if(node == null){
+                node = new IntNode(nums[i]);
+                bucket[index] = node;
+            }else{
+
+            }
+        }
+
+        return false;
+    }
+
+    private static class IntNode{
+        int num;
+        IntNode next;
+
+        IntNode(int num){
+            this.num = num;
+        }
+    }
+
 
     public static void main(String[] args){
 
