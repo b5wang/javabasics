@@ -1,29 +1,37 @@
 package com.b5wang.javabasics.leetcode.entrylevel;
 
+/**
+ * https://leetcode.cn/problems/maximum-subarray/?envType=study-plan&id=shu-ju-jie-gou-ru-men&plan=data-structures&plan_progress=c0c3k7m
+ * */
 public class Ex51_maxSubArray {
 
     /**
      * Brute force algorithm(solution), exhaustion
-     * For example
-     * Original array: [5,4,-1,7,8]
-     * From i=0      : [5,9,8,15,23], i=0,j=5
-     * From i=1      : [0,4,3,10,18], i=0,j=5
-     * From i=2      : [0,0,-1,6,14], i=0,j=5
-     * From i=3      : [0,0,0,7,15],  i=0,j=5
-     * From i=4      : [0,0,0,0,8],   i=0,j=5
-     * Finally i=0,j=5 sub-array index from 0 to 5, it is [5,4,-1,7,8]
+     * Calculate all sub arrays result.
+     * Time complexity can't be up to standard.
      * */
     public int maxSubArrayWithBruteForceAlg(int[] nums) {
-
-        int maxSubArray = nums[0];
-        int maxSubArrayI = 0;
-        int maxSubArrayJ = 0;
+        int max = nums[0];
+        int mI = 0;
+        int mJ = 0;
+        int sum = 0;
 
         for(int i = 0; i < nums.length; i++){
-
+            for(int j = i; j < nums.length; j++){
+                if(i == j){
+                    sum = nums[i];
+                }else{
+                    sum = sum + nums[j];
+                }
+                if(sum > max){
+                    max = sum;
+                    mI = i;
+                    mJ = j;
+                }
+            }
         }
-
-        return 0;
+        //System.out.println("max sum array: i=" + mI + ", j=" + mJ);
+        return max;
     }
 
 
@@ -45,7 +53,12 @@ public class Ex51_maxSubArray {
 
 
     public static void main(String[] args){
+        //int[] arr = {1, 3, -2, 4, -5};
+        int[] arr = {-2,1};
 
+        Ex51_maxSubArray ex = new Ex51_maxSubArray();
+        int max = ex.maxSubArrayWithBruteForceAlg(arr);
+        System.out.println("max sub array value = " + max);
     }
 
 
