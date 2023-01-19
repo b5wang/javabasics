@@ -4,6 +4,9 @@ import java.util.Arrays;
 
 /**
  * https://leetcode.cn/leetbook/read/top-interview-questions-easy/x2gy9m/
+ *
+ * 删除排序数组中的重复项
+ *
  * In-place algorithm
  * */
 public class RemoveRepeatedInSortedArray {
@@ -37,7 +40,7 @@ public class RemoveRepeatedInSortedArray {
      * 3. 后面多出来数字标记为arr[0]-1, 数组中最小的数字
      * */
     public int removeDuplicates(int[] nums) {
-        //System.out.println("Before: " + Arrays.toString(nums));
+        System.out.println("Before: " + Arrays.toString(nums));
         int len = nums.length;
 
         // Start from 2nd element
@@ -59,7 +62,7 @@ public class RemoveRepeatedInSortedArray {
             }
         }
 
-        //System.out.println("After: " + Arrays.toString(nums));
+        System.out.println("After: " + Arrays.toString(nums));
         return len;
     }
 
@@ -68,23 +71,49 @@ public class RemoveRepeatedInSortedArray {
      * 双指针，终极解法？
      * https://leetcode.cn/problems/remove-duplicates-from-sorted-array/solution/shuang-zhi-zhen-shan-chu-zhong-fu-xiang-dai-you-hu/
      * */
-    public int removeDuplicates1(int[] nums) {
-        return 0;
+    public int removeDuplicates2(int[] nums) {
+        if(nums.length <= 1){
+            return 1;
+        }
+
+        System.out.println("Before: " + Arrays.toString(nums));
+
+        int fP = 0;
+        int bP = 1;
+
+        for(bP=1; bP < nums.length; bP++){
+            if(nums[fP] == nums[bP]){
+                // 两个位置的数字相等，只需要把后指针继续后移，直到找到不同的数字
+            }else{
+                if(bP - fP > 1){
+                    // 当frontP和backP位置不临近的时候才需要交换数字。临近位置不需要交换
+                    nums[fP + 1] = nums[bP];
+                    fP = fP + 1;
+                }
+            }
+        }
+
+        System.out.println("After: " + Arrays.toString(nums));
+
+        return fP + 1;
     }
 
     public static void main(String[] args){
         //int[] arr = {1,1};
-        //int[] arr = {1,1,2,2};
+        int[] arr = {1,1,2,2};
 
         // Special case, 3 same elements join together.
-        int[] arr = {0,0,1,1,1,2,2,3,3,4};
+        //int[] arr = {0,0,1,1,1,2,2,3,3,4};
 
 
         RemoveRepeatedInSortedArray ex = new RemoveRepeatedInSortedArray();
 
         //ex.remove(arr, 1);
 
-        int len = ex.removeDuplicates(arr);
+        //int len = ex.removeDuplicates(arr);
+        //System.out.println("len=" + len);
+
+        int len = ex.removeDuplicates2(arr);
         System.out.println("len=" + len);
     }
 
