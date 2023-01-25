@@ -13,18 +13,8 @@ public class RotateArray {
      * Brute force way.
      *
      * */
-    public void rotate(int[] nums, int k) {
-        int tmp;
-        while(k-- > 0){
-            tmp = nums[nums.length - 1];
-            int j = nums.length - 1;
-            while(j > 0){
-                nums[j] = nums[j-1];
-                j--;
-            }
-            nums[0] = tmp;
-        }
-    }
+
+
 
 
     public void rotate2(int[] nums, int k) {
