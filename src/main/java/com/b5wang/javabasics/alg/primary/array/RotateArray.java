@@ -51,9 +51,17 @@ public class RotateArray {
 
     /**
      * 数组有多少个元素，就一共移动多少次
-     * Complete all in one step
+     * Complete all in one step.
+     *
+     * 这种方法的一个致命弱点，nums长度等于k或者是k的倍数，就会陷入循环
+     * ***** 这种方法不可行 *****
      * */
     public void rotateFastest(int[] nums, int k) {
+
+        if(nums.length == k || k == 0){
+            return;
+        }
+
         int len = nums.length;
 
         // total len steps
@@ -69,18 +77,22 @@ public class RotateArray {
             nums[index2] = tmp2;
             tmp2 = tmp1;
             index1 = index2;
+
+            System.out.println("nums: " + Arrays.toString(nums) + ", index1=" + index1 + ", tmp2=" + tmp2);
         }
     }
 
     public static void main(String[] args){
-        int[] arr = {1,2,3,4,5,6,7};
-        int k = 3;
+        //int[] arr = {1,2,3,4,5,6,7};
+        //int[] arr = {1,2,3};
+        int[] arr = {-1,-100,3,99};
+        int k = 2;
 
         System.out.println("Before: " + Arrays.toString(arr));
         RotateArray ex = new RotateArray();
         //ex.rotate(arr,k);
-        ex.rotateFaster(arr,k);
-        //ex.rotateFastest(arr,k);
+        //ex.rotateFaster(arr,k);
+        ex.rotateFastest(arr,k);
         System.out.println("After : " + Arrays.toString(arr));
     }
 

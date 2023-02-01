@@ -6,7 +6,18 @@ package com.b5wang.javabasics.alg.primary.array;
  * */
 public class StockSellAndBuy {
 
+    /**
+     * double pointers
+     * */
     public int maxProfit(int[] prices) {
+
+        int preP = 0;
+        int postP = 0;
+
+
+
+
+
         return 0;
     }
 
