@@ -1,7 +1,5 @@
 package com.b5wang.javabasics.leetcode.entrylevel;
 
-import com.sun.istack.internal.NotNull;
-
 /**
  * https://leetcode.cn/problems/contains-duplicate/?envType=study-plan&id=shu-ju-jie-gou-ru-men&plan=data-structures&plan_progress=yvcyv1t
  *
