@@ -6,6 +6,8 @@ package com.b5wang.javabasics.leetcode.entrylevel;
  * 217. 存在重复元素
  * Find out repeated integers in an array.
  *
+ * https://leetcode.cn/leetbook/read/top-interview-questions-easy/x248f5/
+ *
  * */
 public class Ex217_FindDuplicatedElements {
 
@@ -63,7 +65,7 @@ public class Ex217_FindDuplicatedElements {
                     return true;
                 }
 
-                // 2nd to last node
+                // Compare the node after 2nd, till the last of the list
                 while(node.next != null){
                     node = node.next;
                     if(node.num == nums[i]){

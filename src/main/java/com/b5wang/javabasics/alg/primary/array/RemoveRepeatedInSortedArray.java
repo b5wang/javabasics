@@ -70,27 +70,42 @@ public class RemoveRepeatedInSortedArray {
     /**
      * 双指针，终极解法？
      * https://leetcode.cn/problems/remove-duplicates-from-sorted-array/solution/shuang-zhi-zhen-shan-chu-zhong-fu-xiang-dai-you-hu/
+     *
+     * 需要注意，题目要求返回删除后数组的新长度就可以，并不需要返回新数组
      * */
     public int removeDuplicates2(int[] nums) {
         if(nums.length <= 1){
             return 1;
         }
+        if(nums.length == 2){
+
+        }
 
         System.out.println("Before: " + Arrays.toString(nums));
 
+        // 初始位置
         int fP = 0;
         int bP = 1;
 
-        for(bP=1; bP < nums.length; bP++){
+        while(bP < nums.length){
             if(nums[fP] == nums[bP]){
-                // 两个位置的数字相等，只需要把后指针继续后移，直到找到不同的数字
+                // 两个位置的数字相等，只需要把后指针继续后移，继续寻找不同的数字
+                //bP++;
             }else{
-                if(bP - fP > 1){
-                    // 当frontP和backP位置不临近的时候才需要交换数字。临近位置不需要交换
+                if((fP + 1) == bP){
+                    // fp和bp紧挨着的，又不相等, fp,bp同时整体后移
+                    fP++;
+                    //bP++;
+                }else{
+                    // bP移动到了第一个不等于fP的元素（从fP到bP-1,位置上的元素都是相等的），把不相等的元素移到fP+1位置，相当于删除了多余的相等元素。
+                    // 这个时候fP前移到下一位。
                     nums[fP + 1] = nums[bP];
-                    fP = fP + 1;
+                    fP++;
+                    //bP++;
                 }
             }
+            //无论以上那种情况，后指针bP每次都要前进一步
+            bP++;
         }
 
         System.out.println("After: " + Arrays.toString(nums));
@@ -100,7 +115,7 @@ public class RemoveRepeatedInSortedArray {
 
     public static void main(String[] args){
         //int[] arr = {1,1};
-        int[] arr = {1,1,2,2};
+        int[] arr = {1,2};
 
         // Special case, 3 same elements join together.
         //int[] arr = {0,0,1,1,1,2,2,3,3,4};
