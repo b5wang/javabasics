@@ -12,20 +12,40 @@ public class ReverseList {
      * 2. 需要临时变量来记录当前节点的next，以防丢失节点
      * */
     public ListNode reverseList(ListNode head) {
+        // if list is empty
+        if(head == null){
+            return head;
+        }
+
+        /**
+         * reverse a list, need keep the information, pre, current, post
+         * */
         ListNode pre = null;
         ListNode currentNode = head;
         ListNode next = head.next;
         currentNode.next = pre;
 
         while(next != null){
+            // keep all information
             pre = currentNode;
             currentNode = next;
             next = next.next;
+
+            // reverse the direction
             currentNode.next = pre;
         }
 
         return currentNode;
     }
+
+
+    /**
+     * Consider recursive algorithm
+     * */
+    public ListNode reverseListRecursively(ListNode head) {
+        return null;
+    }
+
 
     public static void main(String[] args){
 
