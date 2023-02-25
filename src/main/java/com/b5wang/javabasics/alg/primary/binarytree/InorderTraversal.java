@@ -1,15 +1,11 @@
 package com.b5wang.javabasics.alg.primary.binarytree;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.List;
 
-/**
- * 要做一个算法，需要思考的几个要点：
- * - 绝大部分是循环的逻辑
- * - 终止条件
- * - 每次循环的动作
- *
- * */
-class PreoderTraversal {
+public class InorderTraversal {
 
     static void traverse(TreeNode root, List<Integer> values) {
         Deque<TreeNode> stack = new LinkedList<>();
@@ -28,7 +24,6 @@ class PreoderTraversal {
             }
         }
     }
-
 
     public static void main(String[] args){
         List<Integer> values = new LinkedList<>();

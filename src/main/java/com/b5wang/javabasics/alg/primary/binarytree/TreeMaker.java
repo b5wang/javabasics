@@ -13,15 +13,16 @@ class TreeMaker {
 
     static TreeNode exampel1(){
         TreeNode[] nodes = getTreeNodes(7);
-        TreeNode root = new TreeNode(0);
+        TreeNode root = nodes[0];
 
         // level 1
-        root.left = nodes[1];
-        root.right = nodes[2];
+        nodes[0].left = nodes[1];
+        nodes[0].right = nodes[2];
 
         // level 2
         nodes[1].left = nodes[3];
         nodes[1].right = nodes[4];
+
         nodes[2].right = nodes[5];
 
         // level 3
