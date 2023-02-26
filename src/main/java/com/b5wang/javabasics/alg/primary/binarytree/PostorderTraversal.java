@@ -5,12 +5,7 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * 中序遍历，一路向左，闷到头！
- * 再右转！
- *
- * */
-class InorderTraversal {
+class PostorderTraversal {
 
     static void traverse(TreeNode root, List<Integer> values) {
         Deque<TreeNode> stack = new LinkedList<>();
@@ -23,12 +18,8 @@ class InorderTraversal {
             }
 
             if(!stack.isEmpty()){
-                cur = stack.pop();
-
-                // Access node
-                values.add(cur.val);
-
-                // 被访问节点的左节点，要嘛为空，要嘛已经被访问过
+                cur = stack.peek();
+                // 右转
                 cur = cur.right;
             }
 
@@ -42,5 +33,4 @@ class InorderTraversal {
         RecursiveTraversal.inorderPrint(root);
         System.out.println("Values: " + Arrays.toString(values.toArray()));
     }
-
 }
