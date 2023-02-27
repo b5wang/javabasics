@@ -23,7 +23,7 @@ class MergeSortedArrays {
         int[] copy = new int[nums1.length];
         int p1 = 0;
         int p2 = 0;
-        while((p1 + p2) < nums1.length){
+        while(p1 < m || p2 < n){
             if(p1 < m && p2 < n) {
                 if (nums1[p1] <= nums2[p2]) {
                     copy[p1 + p2] = nums1[p1];
@@ -32,14 +32,12 @@ class MergeSortedArrays {
                     copy[p1 + p2] = nums2[p2];
                     p2++;
                 }
+            }else if(p1 == m){
+                copy[p1 + p2] = nums2[p2];
+                p2++;
             }else{
-                if(p1 == m){
-                    copy[p1 + p2] = nums2[p2];
-                    p2++;
-                }else{
-                    copy[p1 + p2] = nums1[p1];
-                    p1++;
-                }
+                copy[p1 + p2] = nums1[p1];
+                p1++;
             }
         }
 
