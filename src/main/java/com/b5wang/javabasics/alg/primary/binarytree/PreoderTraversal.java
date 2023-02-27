@@ -13,18 +13,18 @@ class PreoderTraversal {
 
     static void traverse(TreeNode root, List<Integer> values) {
         Deque<TreeNode> stack = new LinkedList<>();
+        TreeNode cur = root;
         stack.push(root);
 
-        while(!stack.isEmpty()){
-            TreeNode cur = stack.pop();
-
-            values.add(cur.val);
-
-            if(cur.right != null){
-                stack.push(cur.right);
+        while(cur != null || !stack.isEmpty()){
+            while(cur != null){
+                values.add(cur.val);
+                stack.push(cur);
+                cur = cur.left;
             }
-            if(cur.left != null){
-                stack.push(cur.left);
+            if(!stack.isEmpty()){
+                cur = stack.pop();
+                cur = cur.right;
             }
         }
     }
