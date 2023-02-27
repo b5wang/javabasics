@@ -28,7 +28,8 @@ class InorderTraversal {
                 // Access node
                 values.add(cur.val);
 
-                // 被访问节点的左节点，要嘛为空，要嘛已经被访问过
+                // 1. 叶子节点有可能为空，下次循环继续从栈中取节点
+                // 2. 不是叶子节点，右节点不为空，下次循环拐去右侧
                 cur = cur.right;
             }
 
