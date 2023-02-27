@@ -2,7 +2,7 @@ package com.b5wang.javabasics.alg.primary.binarytree;
 
 class TreeMaker {
 
-    static TreeNode[] getTreeNodes(int no){
+    private static TreeNode[] getTreeNodes(int no){
         TreeNode[] nodes = new TreeNode[no];
         for(int i = 0; i < no; i++){
             nodes[i] = new TreeNode(i);
