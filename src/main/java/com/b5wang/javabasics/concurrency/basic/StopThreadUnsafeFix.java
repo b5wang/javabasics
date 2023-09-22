@@ -1,7 +1,6 @@
 package com.b5wang.javabasics.concurrency.basic;
 
-public class StopThreadUnsafe {
-
+public class StopThreadUnsafeFix {
     private static Job job = new Job();
 
     /**
@@ -17,9 +16,22 @@ public class StopThreadUnsafe {
     }
 
     private static class ChangeObjectThread extends Thread{
+
+        private volatile boolean isStop = false;
+
+        public void terminate(){
+            isStop = true;
+        }
+
         @Override
         public void run(){
             while(true){
+
+                if(isStop){
+                    System.out.println("Exit thread of ChangeObjectThread");
+                    break;
+                }
+
                 synchronized (job){
                     int v = (int)(System.currentTimeMillis()/1000);
                     job.key = v;
@@ -62,11 +74,8 @@ public class StopThreadUnsafe {
             ChangeObjectThread cot = new ChangeObjectThread();
             cot.start();
             Thread.sleep(150);
-            /**
-             * 调用stop()时候，如果ChangeObjectThread.run()恰巧在中间状态中,key和value的值在不一致的状态。
-             * stop()暴力停止，run线程不安全
-             * */
-            cot.stop();
+            // cot.stop();
+            cot.terminate();
         }
     }
 
