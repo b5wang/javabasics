@@ -53,13 +53,14 @@ public class Counter extends Thread{
                 System.out.println(Thread.currentThread().getName() + ": counter = " + counter);
                 try {
                     Thread.sleep(1000);
-                    object.notify();
-                    object.wait();
+                    //object.notify();
+                    //object.wait();
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                     System.out.println(Thread.currentThread().getName() + " interrupted at wait(2)!");
                 }
             }
+            Thread.yield();
         }
     }
 
