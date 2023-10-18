@@ -5,7 +5,7 @@ package com.b5wang.javabasics.alg.primary.linkedlist;
  * 给你一个单链表的头节点head，请你判断该链表是否为回文链表。如果是，返回true；否则，返回false。
  * palindrome
  * */
-public class PalindromeList {
+public class PalindromeLinkedList {
 
     public boolean isPalindrome(ListNode head) {
         return false;

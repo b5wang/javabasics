@@ -6,7 +6,7 @@ package com.b5wang.javabasics.alg.primary.linkedlist;
  *
  * Double pointers, move 2 pointers on 2 list in 1 round
  * */
-public class MergeTwoSortedLists {
+public class MergeTwoSortedLinkedLists {
 
     /**
      * p1 and p2 present the current nodes respectively

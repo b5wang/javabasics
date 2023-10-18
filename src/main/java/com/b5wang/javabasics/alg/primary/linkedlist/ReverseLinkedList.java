@@ -3,8 +3,16 @@ package com.b5wang.javabasics.alg.primary.linkedlist;
 /**
  * https://leetcode.cn/leetbook/read/top-interview-questions-easy/xnnhm6/
  *
+ * 实现链表逆序
+ * head->1->2->3->4->5->6->7
+ * 得到
+ * head->7->6->5->4->3->2->1
+ *
+ * 思考多种方法；步奏 1）实现功能 2）效率
+ *
+ * @TODO
  * */
-public class ReverseList {
+public class ReverseLinkedList {
 
     /**
      * 给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。
