@@ -29,21 +29,21 @@ public class ReverseLinkedList {
          * reverse a list, need keep the information, pre, current, post
          * */
         ListNode pre = null;
-        ListNode currentNode = head;
+        ListNode current = head;
         ListNode next = head.next;
-        currentNode.next = pre;
+        current.next = pre;
 
         while(next != null){
             // keep all information
-            pre = currentNode;
-            currentNode = next;
-            next = next.next;
+            pre = current;
+            current = next;
+            next = current.next;
 
             // reverse the direction
-            currentNode.next = pre;
+            current.next = pre;
         }
 
-        return currentNode;
+        return current;
     }
 
 
