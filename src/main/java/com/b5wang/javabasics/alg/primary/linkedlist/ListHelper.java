@@ -47,10 +47,25 @@ public class ListHelper {
         System.out.println();
     }
 
+    public static ListNode generateList(){
+        int[] arr = {1,2,3,4,5,6,7,8,9};
+        return asList(arr);
+    }
+
+    public static ListNode generateList(int n){
+        int[] arr = new int[n];
+        for(int i = 0; i < n; i++){
+            arr[i] = i + 1;
+        }
+        return asList(arr);
+    }
+
     public static void main(String[] args){
         int[] arr = {1,2,3,4,5,6,7,8,9};
         ListNode head = asList(arr);
         printList(head);
+
+        head = generateList(100);
         printList(head);
     }
 
