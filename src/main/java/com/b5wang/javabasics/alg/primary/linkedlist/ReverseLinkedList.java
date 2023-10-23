@@ -15,9 +15,12 @@ package com.b5wang.javabasics.alg.primary.linkedlist;
 public class ReverseLinkedList {
 
     /**
+     * (1)
      * 给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。
      * 1. 遍历链表过程同时做方向反转
      * 2. 需要临时变量来记录当前节点的next，以防丢失节点
+     *
+     * 性能分析，O(N)
      * */
     public static ListNode reverseList(ListNode head) {
         // if list is empty
@@ -69,6 +72,12 @@ public class ReverseLinkedList {
         return newHead;
     }
 
+    /**(2)
+     * Consider recursive algorithm
+     * 递归算法：head, 入口。处理方式和无head的有区别，要将真正的head.next=null
+     *
+     * 性能分析：O(N)
+     * */
     public ListNode recursivelyReverse(ListNode head) {
         ListNode newHead = null;
         if(head.next == null){
@@ -81,6 +90,35 @@ public class ReverseLinkedList {
         return newHead;
     }
 
+
+    /**(3)
+     * 插入法：分成两个链表，
+     * 新的链表不断从头部插入
+     * 老的链表不断从头部移除
+     *
+     * 性能:O(N)
+     * 比直接反转链表少用一个变量
+     * */
+    public static ListNode insertReverse(ListNode head){
+        ListNode newHead = head;
+        head = head.next;
+        newHead.next = null;
+
+        ListNode current = null;
+        while(head != null){
+            current = head;
+            head = head.next;
+
+            current.next = newHead;
+            newHead = current;
+        }
+        return newHead;
+    }
+
+
+    /**
+     * Testing
+     * */
     public static void main(String[] args){
         ListNode head = ListHelper.generateList();
         ListHelper.printList(head);// init list
@@ -89,6 +127,9 @@ public class ReverseLinkedList {
         ListHelper.printList(head);// reversed list
 
         head = reverseList(head);
+        ListHelper.printList(head);
+
+        head = insertReverse(head);
         ListHelper.printList(head);
     }
 }
