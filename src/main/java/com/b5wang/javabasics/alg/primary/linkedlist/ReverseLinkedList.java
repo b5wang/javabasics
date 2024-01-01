@@ -37,6 +37,7 @@ public class ReverseLinkedList {
         ListNode pre = null;
         ListNode current = head;
         ListNode next = head.next;
+
         current.next = pre;//
 
         while(next != null){
@@ -77,6 +78,8 @@ public class ReverseLinkedList {
      * 递归算法：head, 入口。处理方式和无head的有区别，要将真正的head.next=null
      *
      * 性能分析：O(N)
+     *
+     * 理解递归的原理
      * */
     public ListNode recursivelyReverse(ListNode head) {
         ListNode newHead = null;
@@ -126,10 +129,10 @@ public class ReverseLinkedList {
         head = reverseList(head);
         ListHelper.printList(head);// reversed list
 
-        head = reverseList(head);
-        ListHelper.printList(head);
-
-        head = insertReverse(head);
-        ListHelper.printList(head);
+//        head = reverseList(head);
+//        ListHelper.printList(head);
+//
+//        head = insertReverse(head);
+//        ListHelper.printList(head);
     }
 }
