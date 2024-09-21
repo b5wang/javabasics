@@ -1,28 +1,23 @@
 package com.b5wang.javabasics.alg.primary.collection;
 
-import java.time.Instant;
-import java.util.Objects;
+import java.util.Arrays;
 
-/**
- * IDE-based generated code equals() and hashCode()
- * Coed -> Generate... -> equals() and hashCode() -> java.util.Objects.equals() and hashCode() (Java 7 and higher)
- * */
 public class DemoHashCode {
 
-    private int id;
-    private String name;
-    private Instant birthday;
+    public static void main(String[] args) {
+        // Intellij generated hash code
+        DemoIntellijGenHashCode intellijGenHashCode = new DemoIntellijGenHashCode();
+        // Common lang hash code
+        DemoCLHashCode demoCLHashCode = new DemoCLHashCode();
+        // Common lang 3
+        DemoCL3HashCode demoCL3HashCode = new DemoCL3HashCode();
+        // Lombok
+        DemoLombokHashCode demoLombokHashCode = new DemoLombokHashCode();
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        DemoHashCode that = (DemoHashCode) o;
-        return id == that.id && Objects.equals(name, that.name) && Objects.equals(birthday, that.birthday);
+        System.out.println("intellijGenHashCode = " + intellijGenHashCode.hashCode());
+        System.out.println("demoCLHashCode      = " + demoCLHashCode.hashCode());
+        System.out.println("demoCL3HashCode     = " + demoCL3HashCode.hashCode());
+        System.out.println("demoLombokHashCode  = " + demoLombokHashCode.hashCode());
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, birthday);
-    }
 }
