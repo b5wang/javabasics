@@ -1,14 +1,19 @@
 package com.b5wang.javabasics.alg.primary.collection;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import java.time.Instant;
+import java.time.LocalDate;
 
+@Setter
+@Getter
 public class DemoCL3HashCode {
     private int id;
     private String name;
-    private Instant birthday;
+    private LocalDate birthday;
 
     @Override
     public boolean equals(Object o) {
