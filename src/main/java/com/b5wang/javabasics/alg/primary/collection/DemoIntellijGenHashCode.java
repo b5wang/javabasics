@@ -1,6 +1,7 @@
 package com.b5wang.javabasics.alg.primary.collection;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Objects;
 
 /**
@@ -11,7 +12,13 @@ public class DemoIntellijGenHashCode {
 
     private int id;
     private String name;
-    private Instant birthday;
+    private LocalDate birthday;
+
+    public DemoIntellijGenHashCode(int id, String name, LocalDate birthday) {
+        this.id = id;
+        this.name = name;
+        this.birthday = birthday;
+    }
 
     @Override
     public boolean equals(Object o) {

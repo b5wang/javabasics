@@ -4,11 +4,18 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
 import java.time.Instant;
+import java.time.LocalDate;
 
 public class DemoCLHashCode {
     private int id;
     private String name;
-    private Instant birthday;
+    private LocalDate birthday;
+
+    public DemoCLHashCode(int id, String name, LocalDate birthday) {
+        this.id = id;
+        this.name = name;
+        this.birthday = birthday;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -22,4 +29,5 @@ public class DemoCLHashCode {
     public int hashCode() {
         return new HashCodeBuilder(17, 37).append(id).append(name).append(birthday).toHashCode();
     }
+
 }

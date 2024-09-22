@@ -15,6 +15,12 @@ public class DemoCL3HashCode {
     private String name;
     private LocalDate birthday;
 
+    public DemoCL3HashCode(int id, String name, LocalDate birthday) {
+        this.id = id;
+        this.name = name;
+        this.birthday = birthday;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
