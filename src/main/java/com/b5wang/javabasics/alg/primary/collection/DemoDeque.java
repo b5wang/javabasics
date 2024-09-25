@@ -11,8 +11,6 @@ public class DemoDeque {
          * */
         Deque<Integer> deque = new ArrayDeque<>(5);
 
-        deque
-
     }
 
 }
