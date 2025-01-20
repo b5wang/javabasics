@@ -1,6 +1,6 @@
 package com.b5wang.javabasics.alg.primary.collection.binarytree;
 
-class TreeMaker {
+public class TreeMaker {
 
     private static TreeNode[] getTreeNodes(int no){
         TreeNode[] nodes = new TreeNode[no];
@@ -11,7 +11,7 @@ class TreeMaker {
     }
 
 
-    static TreeNode exampel1(){
+    public static TreeNode exampel1(){
         TreeNode[] nodes = getTreeNodes(7);
         TreeNode root = nodes[0];
 

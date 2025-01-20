@@ -11,6 +11,10 @@ import java.util.*;
  * */
 class PreoderTraversal {
 
+    /**
+     * [2025-01-20] This method seems wrong
+     * */
+    @Deprecated
     static void traverse(TreeNode root, List<Integer> values) {
         Deque<TreeNode> stack = new LinkedList<>();
         TreeNode cur = root;
@@ -29,11 +33,33 @@ class PreoderTraversal {
         }
     }
 
+    /**
+     * 从一个3节点的完全二叉树来思考
+     * */
+    static void traverse2(TreeNode root, List<Integer> values) {
+        Deque<TreeNode> nodeStack = new LinkedList<>();
+        nodeStack.push(root);
+        TreeNode cur = null;
+
+        while(!nodeStack.isEmpty()){
+            cur = nodeStack.pop();
+
+            values.add(cur.val);
+
+            if(cur.right != null){
+                nodeStack.push(cur.right);
+            }
+            if(cur.left != null){
+                nodeStack.push(cur.left);
+            }
+        }
+    }
+
 
     public static void main(String[] args){
         List<Integer> values = new LinkedList<>();
         TreeNode root = TreeMaker.exampel1();
-        traverse(root,values);
+        traverse2(root,values);
         RecursiveTraversal.preorderPrint(root);
         System.out.println("Values: " + Arrays.toString(values.toArray()));
     }
