@@ -16,16 +16,18 @@ class InOrderTraversal {
         TreeNode cur = null;
 
         while(!stack.isEmpty()){
-            cur = stack.pop();
+            cur = stack.peek();
 
             if(cur.right != null){
                 stack.push(cur.right);
             }
 
-            values.add(cur.val);
 
             if(cur.left != null){
                 stack.push(cur.left);
+            }else{
+                values.add(cur.val);
+                
             }
         }
     }
