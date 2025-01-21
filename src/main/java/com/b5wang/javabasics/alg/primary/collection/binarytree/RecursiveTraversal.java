@@ -61,7 +61,7 @@ class RecursiveTraversal {
     }
 
     public static void main(String[] args){
-        TreeNode root = TreeMaker.exampel1();
+        TreeNode root = TreeMaker.tree1();
 
         System.out.println("--- preoder traversal");
         preorderPrint(root);

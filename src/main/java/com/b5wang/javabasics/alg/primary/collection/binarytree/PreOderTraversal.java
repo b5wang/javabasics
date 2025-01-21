@@ -3,16 +3,12 @@ package com.b5wang.javabasics.alg.primary.collection.binarytree;
 import java.util.*;
 
 /**
- * 要做一个算法，需要思考的几个要点：
- * - 绝大部分是循环的逻辑
- * - 终止条件
- * - 每次循环的动作
- *
+ * https://cloud.tencent.com/developer/article/1632481
  * */
-class PreoderTraversal {
+class PreOderTraversal {
 
     /**
-     * [2025-01-20] This method seems wrong
+     * [2025-01-20] This method seems wrong, I am wrong!!!
      * */
     @Deprecated
     static void traverse(TreeNode root, List<Integer> values) {
@@ -57,8 +53,21 @@ class PreoderTraversal {
 
 
     public static void main(String[] args){
+        sample1();
+        sample2();
+    }
+
+    static void sample1(){
         List<Integer> values = new LinkedList<>();
-        TreeNode root = TreeMaker.exampel1();
+        TreeNode root = TreeMaker.tree1();
+        traverse2(root,values);
+        RecursiveTraversal.preorderPrint(root);
+        System.out.println("Values: " + Arrays.toString(values.toArray()));
+    }
+
+    static void sample2(){
+        List<Integer> values = new LinkedList<>();
+        TreeNode root = TreeMaker.tree2();
         traverse2(root,values);
         RecursiveTraversal.preorderPrint(root);
         System.out.println("Values: " + Arrays.toString(values.toArray()));

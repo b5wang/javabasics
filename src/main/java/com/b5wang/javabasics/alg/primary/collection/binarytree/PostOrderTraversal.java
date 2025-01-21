@@ -5,7 +5,10 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
-class PostorderTraversal {
+/**
+ * https://cloud.tencent.com/developer/article/1632481
+ * */
+class PostOrderTraversal {
 
     static void traverse(TreeNode root, List<Integer> values) {
         Deque<TreeNode> stack = new LinkedList<>();
@@ -43,7 +46,7 @@ class PostorderTraversal {
 
     public static void main(String[] args){
         List<Integer> values = new LinkedList<>();
-        TreeNode root = TreeMaker.exampel1();
+        TreeNode root = TreeMaker.tree1();
         traverse(root,values);
         RecursiveTraversal.postorderPrint(root);
         System.out.println("Values: " + Arrays.toString(values.toArray()));
