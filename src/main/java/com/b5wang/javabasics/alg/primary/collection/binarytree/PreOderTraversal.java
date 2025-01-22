@@ -22,7 +22,7 @@ class PreOderTraversal {
         while(!nodeStack.isEmpty()){
             cur = nodeStack.pop();
 
-            values.add(cur.val);
+            values.add(cur.val);// Visit
 
             if(cur.right != null){
                 nodeStack.push(cur.right);
