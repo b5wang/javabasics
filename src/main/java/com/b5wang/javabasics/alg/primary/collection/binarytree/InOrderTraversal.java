@@ -10,23 +10,28 @@ import java.util.List;
  * */
 class InOrderTraversal {
 
+    /**
+     * In-Order: Left node --> Root node --> Right node
+     *
+     * */
     static void traverse(TreeNode root, List<Integer> values) {
+        if(root == null){
+            return;
+        }
+
         Deque<TreeNode> stack = new LinkedList<>();
-        stack.push(root);
-        TreeNode cur = null;
+        TreeNode cur = root;
 
-        while(!stack.isEmpty()){
-            cur = stack.pop();
-
-            if(cur.right != null){
-                stack.push(cur.right);
+        while(!stack.isEmpty() || cur != null){
+            while(cur != null){
+                stack.push(cur.left);
+                cur = cur.left;
             }
 
+            cur = stack.pop();
             values.add(cur.val);
 
-            if(cur.left != null){
-                stack.push(cur.left);
-            }
+            cur = cur.right;
         }
     }
 

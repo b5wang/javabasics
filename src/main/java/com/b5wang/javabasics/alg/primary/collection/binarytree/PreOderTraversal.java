@@ -8,31 +8,13 @@ import java.util.*;
 class PreOderTraversal {
 
     /**
-     * [2025-01-20] This method seems wrong, I am wrong!!!
+     * Pre-Order: Root node --> Left node --> Right node
      * */
-    @Deprecated
     static void traverse(TreeNode root, List<Integer> values) {
-        Deque<TreeNode> stack = new LinkedList<>();
-        TreeNode cur = root;
-        stack.push(root);
-
-        while(cur != null || !stack.isEmpty()){
-            while(cur != null){
-                values.add(cur.val);
-                stack.push(cur);
-                cur = cur.left;
-            }
-            if(!stack.isEmpty()){
-                cur = stack.pop();
-                cur = cur.right;
-            }
+        if(root == null) {
+            return;
         }
-    }
 
-    /**
-     * 从一个3节点的完全二叉树来思考
-     * */
-    static void traverse2(TreeNode root, List<Integer> values) {
         Deque<TreeNode> nodeStack = new LinkedList<>();
         nodeStack.push(root);
         TreeNode cur = null;
@@ -45,6 +27,7 @@ class PreOderTraversal {
             if(cur.right != null){
                 nodeStack.push(cur.right);
             }
+
             if(cur.left != null){
                 nodeStack.push(cur.left);
             }
@@ -60,7 +43,7 @@ class PreOderTraversal {
     static void sample1(){
         List<Integer> values = new LinkedList<>();
         TreeNode root = TreeMaker.tree1();
-        traverse2(root,values);
+        traverse(root,values);
         RecursiveTraversal.preorderPrint(root);
         System.out.println("Values: " + Arrays.toString(values.toArray()));
     }
@@ -68,7 +51,7 @@ class PreOderTraversal {
     static void sample2(){
         List<Integer> values = new LinkedList<>();
         TreeNode root = TreeMaker.tree2();
-        traverse2(root,values);
+        traverse(root,values);
         RecursiveTraversal.preorderPrint(root);
         System.out.println("Values: " + Arrays.toString(values.toArray()));
     }
