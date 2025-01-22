@@ -22,14 +22,14 @@ class PreOderTraversal {
         while(!nodeStack.isEmpty()){
             cur = nodeStack.pop();
 
-            values.add(cur.val);// Visit
+            values.add(cur.val);// Visit root
 
             if(cur.right != null){
-                nodeStack.push(cur.right);
+                nodeStack.push(cur.right);// Push right node in stack
             }
 
             if(cur.left != null){
-                nodeStack.push(cur.left);
+                nodeStack.push(cur.left);// Push left node in stack. LIFO, so access left child first
             }
         }
     }

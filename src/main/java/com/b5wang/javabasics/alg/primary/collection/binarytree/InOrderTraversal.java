@@ -10,25 +10,35 @@ import java.util.List;
  * */
 class InOrderTraversal {
 
+    /**
+     * In-Order: Left child --> root --> right child
+     * */
     static void traverse(TreeNode root, List<Integer> values) {
         Deque<TreeNode> stack = new LinkedList<>();
-        stack.push(root);
-        TreeNode cur = null;
+        TreeNode cur = root;// Record visited node or right child
 
-        while(!stack.isEmpty()){
-            cur = stack.peek();
-
-            if(cur.right != null){
-                stack.push(cur.right);
+        /**
+         * 1. cur is always treated as root node
+         * */
+        while(!stack.isEmpty() || cur != null){
+            /**
+             * 2. Access lift sub-tree first, till the most left node
+             * */
+            while(cur != null){
+                stack.push(cur);
+                cur = cur.left;
             }
 
+            /**
+             * 3. Visit the most left node
+             * */
+            cur = stack.pop();
+            values.add(cur.val);
 
-            if(cur.left != null){
-                stack.push(cur.left);
-            }else{
-                values.add(cur.val);
-                
-            }
+            /**
+             * 4. Access right sub-tree
+             * */
+            cur = cur.right;
         }
     }
 
