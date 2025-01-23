@@ -36,7 +36,7 @@ class InOrderTraversal {
             values.add(cur.val);
 
             /**
-             * 4. Access right sub-tree
+             * 4. Access right sub-tree (root node of right sub-tree)
              * */
             cur = cur.right;
         }
