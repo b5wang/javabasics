@@ -1,9 +1,8 @@
 package com.b5wang.javabasics.alg.primary.collection.binarytree;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-class LevelOrderTraversal {
+class LevelTraversal {
 
     static void traverse(TreeNode root){
         List<TreeNode> nodeList = new ArrayList<>();
@@ -64,8 +63,42 @@ class LevelOrderTraversal {
         return values;
     }
 
+    static void levelTraverse(TreeNode root, List<Integer> values){
+        if(root == null){
+            return;
+        }
+
+        Queue<TreeNode> queue = new LinkedList<>();// FIFO
+        queue.add(root);
+        TreeNode cur = null;
+
+        while(!queue.isEmpty()){
+            cur = queue.poll();
+            values.add(cur.val);
+
+            if(cur.left != null){
+                queue.add(cur.left);
+            }
+            if(cur.right != null){
+                queue.add(cur.right);
+            }
+        }
+    }
+
     public static void main(String[] args){
+        sample1();
+        sample2();
+    }
+
+    static void sample1(){
         TreeNode root = TreeMaker.tree1();
         traverse(root);
+    }
+
+    static void sample2(){
+        List<Integer> values = new LinkedList<>();
+        TreeNode root = TreeMaker.tree1();
+        levelTraverse(root,values);
+        System.out.println("Values: " + Arrays.toString(values.toArray()));
     }
 }

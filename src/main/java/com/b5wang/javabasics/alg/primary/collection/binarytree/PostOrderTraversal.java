@@ -28,13 +28,19 @@ class PostOrderTraversal {
                 cur = cur.left;
             }
 
+            /**
+             * Different point from In-Order
+             * Now cur must be null (cur == null), because above step condition is cur != null
+             *
+             * There is one condition cur == null and stack.isEmpty()
+             * */
             if(!stack.isEmpty()){
                 cur = stack.peek();// 取值不删除
 
                 if(cur.right == null || cur.right == lastAccess){
                     /**
                      * 2. 一个节点被访问有两个条件：
-                     * (1) 左右节点为空（叶子），上面的步骤中已经隐含了左节点为空
+                     * (1) 左右节点为空（叶子），上面的步骤中已经隐含了左节点为空. Step 1 step condition cur == null
                      * or
                      * (2) 右节点已经被访问过
                      * */
