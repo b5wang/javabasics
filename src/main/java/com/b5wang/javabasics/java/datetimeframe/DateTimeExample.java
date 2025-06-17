@@ -1,6 +1,7 @@
 package com.b5wang.javabasics.java.datetimeframe;
 
 import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.TimeZone;
 
 public class DateTimeExample {
@@ -32,11 +33,19 @@ public class DateTimeExample {
         System.out.println("indoTime: " + indoTime.toString() + " - " + indoTime.toInstant().toEpochMilli());
 
         // DateTiem format with time zone information
-        // TODO
         ZoneId indoZoneId = ZoneId.of("Asia/Jakarta");
-        TimeZone indoTimeZone = TimeZone.getTimeZone(indoZoneId);
+        ZoneOffset indoZoneOffset = LocalDateTime.now().atZone(indoZoneId).getOffset();
+        System.out.println("indoZoneOffset: " + indoZoneOffset.toString());
 
+        ZonedDateTime dateTime = ZonedDateTime.now(indoZoneId);
+        System.out.println("dateTime: " + dateTime);
 
+        LocalDateTime ldt = LocalDateTime.now();
+        ZonedDateTime zdt = ZonedDateTime.now();
+        System.out.println("ldt: " + ldt);
+        System.out.println("zdt: " + zdt);
+        zdt = ldt.atZone(ZoneId.systemDefault());
+        System.out.println("zdt: " + zdt);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.b5wang.javabasics.java.datetimeframe;
 
+import java.time.ZoneId;
 import java.util.TimeZone;
 
 public class TimeZoneExample {
@@ -11,6 +12,7 @@ public class TimeZoneExample {
         }
 
         System.out.println("Default timeZone: " + TimeZone.getDefault());
+        System.out.println("Default zoneId: " + ZoneId.systemDefault());
     }
 
 }
