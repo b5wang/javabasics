@@ -1,8 +1,6 @@
 package com.b5wang.javabasics.java.datetimeframe;
 
 import java.time.*;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.util.TimeZone;
 
 public class DateTimeExample {
@@ -49,38 +47,76 @@ public class DateTimeExample {
         System.out.println("--------------------------------------------------------------");
         System.out.println("LocalDateTime:");
         /*
-         *LocalDateTime has no timezone information
+         * LocalDateTime has no timezone information
          */
         LocalDateTime localDateTime = LocalDateTime.now();
         System.out.println("localDateTime           : " + localDateTime.toString());
-
-        // ZoneDateTime
+        System.out.println("Local timezone id       : " + ZoneId.systemDefault().getId());
+        System.out.println("Local timezone          : " + TimeZone.getDefault());
+        System.out.println("--------------------------------------------------------------");
+        System.out.println("ZonedDateTime:");
+        /*
+         * ZonedDateTime has no timezone information
+         */
         ZonedDateTime zonedDateTime = ZonedDateTime.now();
+        long nowMilliSecond = System.currentTimeMillis();
+        System.out.println("zonedDateTime           : " + zonedDateTime.getZone().getId());
         System.out.println("zonedDateTime           : " + zonedDateTime.getZone());
         System.out.println("zonedDateTime           : " + zonedDateTime.toString());
         System.out.println("zonedDateTime epochMilli: " + zonedDateTime.toInstant().toEpochMilli());
+        System.out.println("nowMilliSecond          : " + nowMilliSecond);
 
         // TimeZone switch
-        System.out.println("localDateTime: " + localDateTime.toString());
-        ZonedDateTime sgTime = localDateTime.atZone(TimeZone.getTimeZone("Asia/Singapore").toZoneId());
-        System.out.println("sgTime: " + sgTime.toString() + " - " + sgTime.toInstant().toEpochMilli());
-        ZonedDateTime indoTime = sgTime.toInstant().atZone(TimeZone.getTimeZone("Asia/Jakarta").toZoneId());
-        System.out.println("indoTime: " + indoTime.toString() + " - " + indoTime.toInstant().toEpochMilli());
+        System.out.println("--------------------------------------------------------------");
+        System.out.println("Switch timezone         :");
+        System.out.println("localDateTime           : " + localDateTime.toString() + " at " + ZoneId.systemDefault().getId());
+        System.out.println("Australia/Sydney        : " + localDateTime.atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("Australia/Sydney")));
+        System.out.println("Asia/Tokyo              : " + localDateTime.atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("Asia/Tokyo")));
+        System.out.println("Asia/Singapore          : " + localDateTime.atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("Asia/Singapore")));
+        System.out.println("Asia/Jakarta            : " + localDateTime.atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("Asia/Jakarta")));
+        System.out.println("Europe/Rome             : " + localDateTime.atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("Europe/Rome")));
+        System.out.println("Europe/Paris            : " + localDateTime.atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("Europe/Paris")));
+        System.out.println("Europe/London           : " + localDateTime.atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("Europe/London")));
+        System.out.println("UTC                     : " + localDateTime.atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("UTC")));
+        System.out.println("US/Pacific              : " + localDateTime.atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("US/Pacific")));
 
-        // DateTiem format with time zone information
-        ZoneId indoZoneId = ZoneId.of("Asia/Jakarta");
-        ZoneOffset indoZoneOffset = LocalDateTime.now().atZone(indoZoneId).getOffset();
-        System.out.println("indoZoneOffset: " + indoZoneOffset.toString());
 
-        ZonedDateTime dateTime = ZonedDateTime.now(indoZoneId);
-        System.out.println("dateTime: " + dateTime);
+        System.out.println("--------------------------------------------------------------");
+        System.out.println("Switch time from Tokyo to Paris,");
+        /**
+         * There will be a meeting in Tokyo at 2025-6-18 14:30:00.
+         * When the colleagues in Paris office should join the meeting remotely?
+         * */
+        LocalDateTime dateTimeOfTokyo = LocalDateTime.of(2025,6,18,14,30,0);
+        ZoneId tokyoZone = ZoneId.of("Asia/Tokyo");
+        ZoneId parisZone = ZoneId.of("Europe/Paris");
+        LocalDateTime dateTimeOfParis = dateTimeOfTokyo.atZone(tokyoZone).withZoneSameInstant(parisZone).toLocalDateTime();
+        System.out.println("Tokyo local time        : " + dateTimeOfTokyo);
+        System.out.println("To Paris local time     : " + dateTimeOfParis);
 
-        LocalDateTime ldt = LocalDateTime.now();
-        ZonedDateTime zdt = ZonedDateTime.now();
-        System.out.println("ldt: " + ldt);
-        System.out.println("zdt: " + zdt);
-        zdt = ldt.atZone(ZoneId.systemDefault());
-        System.out.println("zdt: " + zdt);
+        ZonedDateTime tokyoDateTime = dateTimeOfTokyo.atZone(tokyoZone);
+        ZonedDateTime parisDateTime = tokyoDateTime.withZoneSameInstant(parisZone);
+        System.out.println("Tokyo zone time         : " + tokyoDateTime);
+        System.out.println("To Paris zone time      : " + parisDateTime);
+
+        System.out.println("--------------------------------------------------------------");
+        System.out.println("ZoneOffset: A simpler and higher performance TimeZone switch way,");
+        /**
+         * ZoneOffset offset1 = ZoneOffset.of("+08:00"); // UTC+8
+         * ZoneOffset offset2 = ZoneOffset.of("-05:00"); // UTC-5
+         * ZoneOffset utc = ZoneOffset.UTC; // 等同于 "+00:00"
+         * 1. 与ZoneId的区别：ZoneOffset更轻量，但无法处理夏令时
+         * 2. 性能: ZoneOffset-更高（无时区规则计算）; ZoneId-较低（需处理时区规则）
+         * 3. 典型用途: ZoneOffset-数据库存储、日志、简单时间计算; ZoneId-地区时间显示、跨时区业务逻辑
+         * */
+        ZoneOffset utcZoneOffset = ZoneOffset.UTC;
+        ZoneOffset utc8ZoneOffset = ZoneOffset.ofHours(8);
+        ZoneOffset utc7ZoneOffset = ZoneOffset.of("+07:00");
+        OffsetDateTime offsetDateTime = OffsetDateTime.now();// Similar as ZonedDateTime
+        System.out.println("Offset time             : " + offsetDateTime);
+        System.out.println("UTC+8 offset time       : " + offsetDateTime.withOffsetSameInstant(utc8ZoneOffset));
+        System.out.println("UTC+7 offset time       : " + offsetDateTime.withOffsetSameInstant(utc7ZoneOffset));
+        System.out.println("UTC   offset time       : " + offsetDateTime.withOffsetSameInstant(utcZoneOffset));
     }
 
 }
